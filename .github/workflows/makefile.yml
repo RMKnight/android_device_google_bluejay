@@ -1,0 +1,27 @@
+name: Makefile CI
+
+on:
+  push:
+    branches: [ "bluejay_beta-user-UpsideDownCake-UPP2.230217.004-9663077-release-keys" ]
+  pull_request:
+    branches: [ "bluejay_beta-user-UpsideDownCake-UPP2.230217.004-9663077-release-keys" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: configure
+      run: ./configure
+
+    - name: Install dependencies
+      run: make
+
+    - name: Run check
+      run: make check
+
+    - name: Run distcheck
+      run: make distcheck
